@@ -76,10 +76,16 @@ pub use orchestrator::{
     InferenceError, InferenceRequest, InferenceResponse, InferenceResult, Token, TokenUsage,
 };
 
+// Re-export Phase 2: Telemetry, ModelPool & Policy Router
+pub use orchestrator::{
+    EvictionResult, ModelInstance, ModelPool, RequestRouter, RoutingDecision, RoutingPolicy,
+    TelemetryMonitor, TelemetrySnapshot,
+};
+
 // Re-export Linux implementation and pipeline when available
 #[cfg(all(target_os = "linux", feature = "linux-candle"))]
 pub use orchestrator::{
-    InferencePipeline, LinuxCandleProvider, ModelPool, PipelineBuilder, PipelineOutput,
+    CandleModelPool, InferencePipeline, LinuxCandleProvider, PipelineBuilder, PipelineOutput,
     PipelineStage,
 };
 
