@@ -64,6 +64,12 @@ pub use orchestrator::{
     OrchestratorError, OrchestratorResult, PoolStatistics,
 };
 
+// Re-export Unified Inference Orchestrator types (Phase 1)
+pub use orchestrator::{
+    ChatRole, CloudOpenAIConfig, CloudOpenAIProvider, InferenceBackend, InferenceChatMessage,
+    InferenceError, InferenceRequest, InferenceResponse, InferenceResult, Token, TokenUsage,
+};
+
 // Re-export Linux implementation and pipeline when available
 #[cfg(target_os = "linux")]
 pub use orchestrator::{
@@ -73,9 +79,6 @@ pub use orchestrator::{
 
 // Re-export secretary types for convenience
 pub use secretary::{
-    // Core types
-    extract_json_block,
-    parse_llm_json,
     Artifact,
     ChannelConnection,
     ChatMessage,
@@ -114,4 +117,7 @@ pub use secretary::{
     TodoStatus,
     UserConnection,
     WorkPhase,
+    // Core types
+    extract_json_block,
+    parse_llm_json,
 };
