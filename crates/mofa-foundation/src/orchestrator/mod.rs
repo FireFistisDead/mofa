@@ -81,6 +81,21 @@ pub mod pool;
 pub mod router;
 
 // ---------------------------------------------------------------------------
+// Phase 3: Dual Local Backends (Trade Study)
+// ---------------------------------------------------------------------------
+
+/// Local Candle backend — pure-Rust inference via Hugging Face Candle.
+/// Supports CUDA, Metal, and CPU with automatic fallback.
+/// Requires the `candle` feature flag.
+#[cfg(feature = "candle")]
+pub mod local_candle;
+
+/// Local llama.cpp backend — optimized C++ inference via `llama_cpp_2` FFI.
+/// Requires the `llama-cpp` feature flag.
+#[cfg(feature = "llama-cpp")]
+pub mod local_llama;
+
+// ---------------------------------------------------------------------------
 // Edge Model Orchestrator (legacy)
 // ---------------------------------------------------------------------------
 
@@ -115,6 +130,14 @@ pub use cloud_openai::{CloudOpenAIConfig, CloudOpenAIProvider};
 pub use pool::{EvictionResult, ModelInstance, ModelPool};
 pub use router::{RequestRouter, RoutingDecision, RoutingPolicy};
 pub use telemetry::{TelemetryMonitor, TelemetrySnapshot};
+
+// ── Re-exports: Phase 3 (Local Backends) ──
+
+#[cfg(feature = "candle")]
+pub use local_candle::{CandleConfig, CandleDeviceInfo, CandleProvider};
+
+#[cfg(feature = "llama-cpp")]
+pub use local_llama::{LlamaCppConfig, LlamaCppProvider};
 
 // ── Re-exports: Linux Candle (feature-gated) ──
 

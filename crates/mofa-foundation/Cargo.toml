@@ -33,8 +33,12 @@ kokoro = ["mofa-plugins/kokoro"]
 mcp = ["dep:rmcp"]
 # Enable Qdrant vector database support
 qdrant = ["dep:qdrant-client"]
-# Enable Linux Candle on-device ML inference (Hugging Face Candle)
-linux-candle = ["dep:candle-core", "dep:candle-transformers"]
+# Enable Candle-based local inference (cross-platform: Linux, macOS, Windows)
+candle = ["dep:candle-core", "dep:candle-transformers", "dep:tokenizers"]
+# Enable Linux Candle on-device ML inference (legacy, includes candle-transformers)
+linux-candle = ["candle", "dep:candle-transformers"]
+# Enable llama.cpp-based local inference via llama_cpp_2
+llama-cpp = ["dep:llama-cpp-2"]
 
 [dependencies]
 # Workspace dependencies
@@ -121,6 +125,12 @@ sysinfo = "0.31"
 # Enable with: features = ["linux-candle"]
 candle-core = { version = "0.8", optional = true }
 candle-transformers = { version = "0.8", optional = true }
+
+# HuggingFace tokenizer for local inference
+tokenizers = { version = "0.21", optional = true, default-features = false, features = ["onig"] }
+
+# llama.cpp FFI bindings for local inference
+llama-cpp-2 = { version = "0.1", optional = true }
 
 [lints]
 workspace = true

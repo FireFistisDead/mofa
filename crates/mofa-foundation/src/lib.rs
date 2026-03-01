@@ -82,6 +82,13 @@ pub use orchestrator::{
     TelemetryMonitor, TelemetrySnapshot,
 };
 
+// Re-export Phase 3: Local Backends
+#[cfg(feature = "candle")]
+pub use orchestrator::{CandleConfig, CandleDeviceInfo, CandleProvider};
+
+#[cfg(feature = "llama-cpp")]
+pub use orchestrator::{LlamaCppConfig, LlamaCppProvider};
+
 // Re-export Linux implementation and pipeline when available
 #[cfg(all(target_os = "linux", feature = "linux-candle"))]
 pub use orchestrator::{
