@@ -52,6 +52,7 @@ members = [
     "capability_discovery",
     "rag_retrieval_demo",
     "rag_indexing_demo",
+    "deep_research_agent",
 ]
 
 [workspace.package]
